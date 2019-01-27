@@ -22,6 +22,10 @@ class App extends React.Component {
       .then(response => response.json())
       .then(responseJson => this.setState({
         users: responseJson.items
+      .catch(error => {
+        if (error.status === 404) {
+            console.log("Error");
+        }
       }));
   }
 
@@ -73,14 +77,14 @@ class User extends React.Component {
 }
 
 class ScrollTop extends React.Component {
-  onScroll(event){
+  scrollToTop(event){
     // event.preventDefault();
     document.documentElement.scrollTop = 0;
   }
 
   render(){
     return (
-      <a className="btn" role="button" href="#" onClick={this.onScroll}>Top</a>
+      <a className="btn" role="button" href="#" onClick={this.scrollToTop}>Top</a>
     );
   }
 }
